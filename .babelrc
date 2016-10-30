@@ -1,0 +1,12 @@
+{
+  "presets": [
+    ["modern-node", { "loose":true }],
+    "stage-2",
+    "react"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["istanbul"]
+    }
+  }
+}

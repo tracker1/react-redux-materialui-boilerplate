@@ -1,11 +1,9 @@
 {
-  "name": "amex_pst_sandbox",
+  "name": "react-starter-template",
+  "private": true,
   "version": "0.0.0",
-  "description": "Aperican Express PST (Next Generation)",
+  "description": "React Redux Starter Template",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tallwave/amex_pst_sandbox.git"
@@ -23,6 +21,7 @@
     "babel-plugin-istanbul": "^2.0.3",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.18.0",
+    "babel-preset-modern-node": "^3.2.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
     "babel-register": "^6.18.0",
@@ -31,7 +30,10 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "node-sass": "^3.4.2",
+    "nodemon": "^1.11.0",
     "nyc": "^8.3.2",
+    "proxyquire": "^1.7.10",
+    "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
@@ -39,9 +41,12 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "codecov": "^1.0.1",
+    "cross-env": "^3.1.3",
     "express": "^4.14.0",
+    "express-http-proxy": "^0.10.1",
     "helmet": "^3.0.0",
     "hpp": "^0.2.1",
     "react": "^15.3.2",
@@ -50,7 +55,27 @@
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
+    "shelljs": "^0.7.5",
     "tap": "^8.0.0",
     "tape": "^4.6.2"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register",
+      "./scripts/test/init.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "scripts": {
+    "test": "nyc tap ./src/**/*.test.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   }
 }
