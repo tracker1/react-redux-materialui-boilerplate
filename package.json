@@ -30,24 +30,27 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "node-sass": "^3.4.2",
     "nyc": "^8.3.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "codecov": "^1.0.1",
     "express": "^4.14.0",
     "helmet": "^3.0.0",
     "hpp": "^0.2.1",
-    "node-sass": "^3.4.2",
     "react": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^3.0.0",
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "webpack-dev-server": "^1.16.2"
+    "tap": "^8.0.0",
+    "tape": "^4.6.2"
   }
 }
