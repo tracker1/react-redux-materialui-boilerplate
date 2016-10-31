@@ -1,4 +1,3 @@
-import React from 'react';
 import './page.scss';
 
 import TopNav from './topnav';
