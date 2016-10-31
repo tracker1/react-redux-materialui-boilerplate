@@ -98,7 +98,7 @@
   "scripts": {
     "lint": "eslint ./src/",
     "pretest": "npm run lint && node scripts/pretest.js",
-    "test": "cross-env NODE_ENV=test nyc tap ./src/**/*.test.js",
+    "test": "cross-env NODE_ENV=test nyc tap \"./src/**/*.test.js\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   }
 }
