@@ -26,6 +26,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "babel-tape-runner": "^2.0.1",
+    "blue-tape": "^1.0.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.9.0",
     "eslint-config-airbnb": "^12.0.0",
@@ -43,6 +44,8 @@
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
+    "tap": "^8.0.0",
+    "tape": "^4.6.2",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
@@ -68,9 +71,7 @@
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "shelljs": "^0.7.5",
-    "tap": "^8.0.0",
-    "tape": "^4.6.2"
+    "shelljs": "^0.7.5"
   },
   "nyc": {
     "lines": 99,

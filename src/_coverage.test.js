@@ -9,7 +9,7 @@ import glob from 'glob';
 
 const allScripts = glob
   .sync(`${path.resolve(__dirname)}/**/*.js`)
-  .filter(s => !(/\.test\.js$/).test(s));
+  .filter(s => !(/\.(test|disabled)\.$/).test(s));
 
 test('Loading all files for coverage check', (t) => {
   t.plan(allScripts.length);

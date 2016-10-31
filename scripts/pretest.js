@@ -4,8 +4,8 @@ const base = path.resolve(__dirname, '../');
 
 const allScripts = glob.sync(path.join(__dirname, '../src') + '/**/*.js');
 
-const tests = allScripts.filter(s => (/\.test\.js$/).test(s));
-const scripts = allScripts.filter(s => !(/\.test\.js$/).test(s));
+const tests = allScripts.filter(s => !(/\.disabled\./).test(s)).filter(s => (/\.test\.js$/).test(s));
+const scripts = allScripts.filter(s => !(/\.(test|disabled)\.$/).test(s));
 
 const untested = scripts.filter(s => !tests.includes(s.replace(/\.js$/,'.test.js')));
 
