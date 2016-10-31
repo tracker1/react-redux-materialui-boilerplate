@@ -1,9 +1,10 @@
+import React from 'react';
 import './page.scss';
 
 import TopNav from './topnav';
 import LeftNav from './leftnav';
 
-export default ({children}) => (
+export default ({ children }) => (
   <div className="common-layout-page">
     <div className="common-layout-page-leftnav">
       <LeftNav />

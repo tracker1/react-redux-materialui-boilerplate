@@ -1,13 +1,20 @@
-var test = require('tape');
-var path = require('path');
-var glob = require('glob');
+/* eslint
+  import/no-extraneous-dependencies: "off",
+  global-require:"off",
+  import/no-dynamic-require:"off"
+*/
+import test from 'tape';
+import path from 'path';
+import glob from 'glob';
 
-var allScripts = glob.sync(path.resolve(__dirname) + '/**/*.js').filter(s => !(/\.test\.js$/).test(s));
+const allScripts = glob
+  .sync(`${path.resolve(__dirname)}/**/*.js`)
+  .filter(s => !(/\.test\.js$/).test(s));
 
-test('Loading all files for coverage check', function(t){
+test('Loading all files for coverage check', (t) => {
   t.plan(allScripts.length);
-  for (var script of allScripts) {
+  for (const script of allScripts) {
     require(script);
-    t.pass('Loaded ' + script);
+    t.pass(`Loaded ${script}`);
   }
 });
