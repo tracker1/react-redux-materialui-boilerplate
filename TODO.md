@@ -31,8 +31,11 @@ for this project.
 * Configure server
   * helment at hpp
   * static assets
-    * prod environment './static'
+    * prod environment `__dirname + ../static`
     * dev environment, separate webpack dev server instance
+      * webpack dev server init
+      * spawn server in dev mode / nodemon
+      * when one process terminates, both should
   * api route
     * error handler
   * page route - react/app render
