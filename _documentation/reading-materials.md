@@ -9,6 +9,12 @@
 * [Object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring)
 * [Video Course on ES6](https://es6.io/) - this is entirely optional, it's commercial, and not sure if we could get a team license.
 
+## Code Style Guides
+
+* [JavaScript Style Guide](https://github.com/airbnb/javascript) - The airbnb style guide will be used nearly as-is.
+* [React Style Guide](https://github.com/airbnb/javascript/tree/master/react) - I will not be enforcing the `.jsx` file extension.
+
+
 ## Node & NPM
 
 It's important to have a general understanding of how npm and commonjs packages work in general.
