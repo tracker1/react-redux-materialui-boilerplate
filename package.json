@@ -66,6 +66,10 @@
     "tape": "^4.6.2"
   },
   "nyc": {
+    "lines": 99,
+    "statements": 99,
+    "functions": 99,
+    "branches": 99,
     "include": [
       "src/**/*.js"
     ],
@@ -78,11 +82,14 @@
       "text-summary"
     ],
     "sourceMap": false,
-    "instrument": false
+    "instrument": false,
+    "cache": true,
+    "all": true,
+    "check-coverage": true
   },
   "scripts": {
     "pretest": "node scripts/pretest.js",
-    "test": "nyc tap ./src/**/*.test.js",
+    "test": "cross-env NODE_ENV=test nyc tap ./src/**/*.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   }
 }
