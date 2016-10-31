@@ -2,18 +2,18 @@
   "name": "react-starter-template",
   "private": true,
   "version": "0.0.0",
-  "description": "React Redux Starter Template",
+  "description": "Boilerplate for react, redux, materialui, express",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tallwave/amex_pst_sandbox.git"
+    "url": "git+https://github.com/tracker1/react-redux-materialui-boilerplate.git"
   },
-  "author": "Aperican Express",
-  "license": "SEE LICENSE IN LICENSE file",
+  "author": "Michael J. Ryan <tracker1@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Tallwave/amex_pst_sandbox/issues"
+    "url": "https://github.com/tracker1/react-redux-materialui-boilerplate/issues"
   },
-  "homepage": "https://github.com/Tallwave/amex_pst_sandbox#readme",
+  "homepage": "https://github.com/tracker1/react-redux-materialui-boilerplate#readme",
   "devDependencies": {
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
