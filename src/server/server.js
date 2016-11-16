@@ -7,21 +7,22 @@ import registerHttp from './register-listener-http';
 import registerHttps from './register-listener-https';
 
 // main process
-async function main() {
-  process.on('uncaughtException', handleGlobalException);
+export default async function main() {
+  try {
+    process.on('uncaughtException', handleGlobalException);
 
-  // new express app
-  const app = express();
+    // new express app
+    const app = express();
 
-  // configure via middleware
-  await middleware(app);
+    // configure via middleware
+    await middleware(app);
 
-  // add listeners
-  await Promise.all([
-    registerHttp(app),
-    registerHttps(app),
-  ]);
+    // add listeners
+    await Promise.all([
+      registerHttp(app),
+      registerHttps(app),
+    ]);
+  } catch (error) {
+    handleGlobalException(error);
+  }
 }
-
-// run main process
-main().catch(handleGlobalException);

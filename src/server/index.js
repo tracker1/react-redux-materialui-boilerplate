@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/server';
 import register from 'ignore-styles';
 import logger from './logger';
 
@@ -14,4 +14,6 @@ global.ReactDOM = ReactDOM;
 global.logger = logger;
 require('babel-runtime/core-js/promise').default = Promise;
 
-require('./server-instance');
+const server = require('./server').default;
+
+export default server;
