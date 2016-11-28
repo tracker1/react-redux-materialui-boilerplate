@@ -1,8 +1,9 @@
-/* eslint "import/no-extraneous-dependencies":"off" */
+/* eslint "import/no-extraneous-dependencies":"off", no-consle:"off" */
 import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const ENV = process.env.NODE_ENV || 'development';
 const isDev = (ENV === 'development');
@@ -11,11 +12,17 @@ const appCSS = new ExtractTextPlugin('app.css');
 
 module.exports = {
   entry: {
-    app: './src/client/index.js',
+    app: (
+      isDev
+        ? ['webpack/hot/dev-server', 'webpack-hot-middleware/client'] 
+        : []
+    ).concat(
+      ['babel-polyfill', './src/client/index.js']
+    ),
   },
 
   output: {
-    path: './dist/public/',
+    path: path.resolve(__dirname, './dist/public/'),
     publicPath: '/public',
     filename: '[name].js',
     // library: ['[name]'],
@@ -104,6 +111,10 @@ module.exports = {
 
   plugins: ([
     appCSS,
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/client/index.template.html'),
+      inject: 'body',
+    }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
@@ -120,11 +131,15 @@ module.exports = {
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({
         mangle: true,
-        compress: true,
+        compress: {
+          warnings: false,
+        },
         comments: false,
       }),
     ]
-    : []
+    : [
+      new webpack.HotModuleReplacementPlugin()
+    ]
   ),
 
   stats: { colors: true },
@@ -132,20 +147,25 @@ module.exports = {
   devtool: ENV === 'production' ? 'source-map' : 'inline-source-map',
 
   devServer: {
-    port: process.env.PORT || 8080,
+    noInfo: true,
+    hot: true,
+    port: process.env.PORT || 8181,
     host: '0.0.0.0',
     colors: true,
-    publicPath: '/',
+    publicPath: '/public/',
     contentBase: './src',
     historyApiFallback: true,
     proxy: [
       // OPTIONAL: proxy configuration:
-      // {
-      //   path: '/optional-prefix/**',
-      //   target: 'http://target-host.com',
-      //   rewrite: req => { req.url = req.url.replace(/^\/[^\/]+\//, ''); }   
-              // strip first path segment
-      // }
+      {
+        path: '/api',
+        target: 'http://localhost:8080/api',
+        rewrite: (req) => {
+          console.log('proxy', req.url);
+          // strip first path segment
+          // req.url = req.url.replace(/^\/[^\/]+\//, '');
+        },
+      },
     ],
   },
 };

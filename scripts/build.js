@@ -29,9 +29,10 @@ async function main() {
   const pkg = require('../package.json');
 
   delete pkg.devDependencies;
-  pkg.main = 'index.js';
+  delete pkg.nyc;
+  pkg.main = './server/index.js';
   pkg.scripts = {
-    start: './index.js',
+    start: 'cross-env NODE_ENV=production node ./server/index.js',
   };
 
   console.log('package.json');

@@ -2,6 +2,7 @@
   no-undef:"off",
   no-console:"off",
   global-require: "off",
+  no-continue: "off"
 */
 import './_init';
 
@@ -16,10 +17,22 @@ async function main() {
   }
 
   shell.cd(path.resolve(__dirname, '../'));
-  const files = glob.sync('./src/**/*', { nodir: true }).filter(f => !(/(disabled|test)/).test(f));
+  const files = glob.sync('./src/**/*', { nodir: true })
+    .filter(f => !(/(disabled|test)/).test(f))
+    .map(f => f.replace(/\\/g, '/'));
 
-  for (const file of files) {
+  for (let file of files) {
+    // if it's the dev middleware, skip
+    if (file === './src/server/middleware/development.js') {
+      continue;
+    }
+
     let s = await fs.readFile(file);
+
+    // if it's the dev-prod middleware, replace dev middleware
+    if (file === './src/server/middleware/development-prod.js') {
+      file = './src/server/middleware/development.js';
+    }
 
     if ((/\.jsx?$/).test(file)) {
       const o = babel.transform(s, {

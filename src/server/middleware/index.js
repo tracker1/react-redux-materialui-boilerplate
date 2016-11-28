@@ -9,10 +9,13 @@ import pageMw from '../page';
 import cfg from '../config';
 
 export default async function registerMiddleware(app) {
+  if (!cfg.isDev) {
+
+  }
   await expressMw(app);
   await apiMw(app);
   if (cfg.isDev) {
-    await require('./development')(app);
+    await require('./development').default(app);
   }
   await staticMw(app);
   await pageMw(app);

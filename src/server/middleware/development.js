@@ -1,8 +1,13 @@
-// NOTE: will be replaced by development-prod for built version
+/* eslint global-require:"off", import/no-extraneous-dependencies:"off" */
+export default async function registerApp(app) {
+  const webpack = require('webpack');
+  const webpackConfig = require('../../../webpack.config.babel.js');
 
-const sleep = ms => new Promise(res => setTimeout(res, ms));
+  const compiler = webpack(webpackConfig);
 
-export default async function registerApp(/* app */) {
-  // TODO: add webpack dev and hmr
-  await sleep(10);
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+  }));
+  app.use(require('webpack-hot-middleware')(compiler));
 }

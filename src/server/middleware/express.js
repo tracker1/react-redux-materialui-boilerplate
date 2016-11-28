@@ -1,6 +1,7 @@
 import path from 'path';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import compression from 'compression';
 import bodyParser from 'body-parser';
 import cfg from '../config';
 
@@ -24,4 +25,6 @@ export default async function addExpressMiddleware(app) {
   app.use(bodyParser.json());
 
   app.use(hpp());
+
+  app.use(compression({}));
 }
