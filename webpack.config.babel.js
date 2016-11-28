@@ -70,11 +70,11 @@ module.exports = {
       },
       {
         test: /\.(sass|scss|css)$/,
-        loader: appCSS.extract('css?sourceMap!postcss!sass?sourceMap'),
+        loader: appCSS.extract('css?sourceMap!postcss-loader!sass?sourceMap'),
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json',
       },
       {
         test: /\.(xml|html|txt)$/,
@@ -83,6 +83,10 @@ module.exports = {
       {
         test: /\.(svg|woff|ttf|eot)(\?.*)?$/i,
         loader: 'file-loader?name=assets/fonts/[name]_[hash:base64:5].[ext]',
+      },
+      {
+        test: /\.(gif|jpg|png)(\?.*)?$/i,
+        loader: 'file-loader?name=assets/images/[name]_[hash:base64:5].[ext]',
       },
     ],
   },

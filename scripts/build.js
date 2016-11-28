@@ -1,13 +1,52 @@
-// rimraf dist
+/* eslint
+  no-undef:"off",
+  no-console:"off",
+  global-require: "off",
+*/
+import './_init';
 
-// create dist
+console.log('build.js');
+async function main() {
+  const dist = path.resolve(__dirname, '../dist');
 
-// babel ./server/ to dist/
+  // rimraf dist
+  console.log('rimraf dist');
+  await rimraf(dist);
 
-// webpack to dist/static/
+  // create dist
+  console.log('mkdir dist');
+  shell.mkdir(dist);
 
-// save modified package.json to dist/
+  // babel ./server/ to dist/
+  console.log('build server');
+  shell.exec(`babel-node ${path.resolve(__dirname, './build-server.js')}`)
 
-// create dist/node_modules
+  // webpack to dist/static/
+  console.log('build client');
+  shell.exec(`babel-node ${path.resolve(__dirname, './build-client.js')}`)
 
-// npm install --production in dist/
+  // save modified package.json to dist/
+  const pkg = require('../package.json');
+
+  delete pkg.devDependencies;
+  pkg.main = 'index.js';
+  pkg.scripts = {
+    start: './index.js',
+  };
+
+  console.log('package.json');
+  await fs.writeFile(path.resolve(dist, 'package.json'), JSON.stringify(pkg, null, 2));
+
+  // create dist/node_modules
+  console.log('cd dist', dist);
+  shell.cd(dist);
+
+  // npm install --production in dist/
+  console.log('npm install --production');
+  shell.exec('npm install --production');
+  shell.exec('ls');
+
+  shell.cd(path.resolve(__dirname, '../'));
+}
+
+main().catch(err => console.error(err.stack));
