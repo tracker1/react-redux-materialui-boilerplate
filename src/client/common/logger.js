@@ -1,12 +1,9 @@
 // for now, using console, using require for testing
-const console = global.console = global.console || {};
-console.log = console.log || (() => {});
-console.info = console.info || console.log || (() => {});
-console.warn = console.warn || console.log || (() => {});
-console.error = console.error || console.log || (() => {});
+import { console } from './globals';
 
 // TODO: map to appropriate logger tool
 const logger = {
+  fatal: (...args) => console.error(...args),
   error: (...args) => console.error(...args),
   warn: (...args) => console.warn(...args),
   log: (...args) => console.log(...args),

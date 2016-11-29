@@ -2,6 +2,8 @@ import ReactDOM from 'react-dom';
 import logger from './common/logger';
 import App from './app';
 
+import { window, document } from './common/globals';
+
 import './common/style/index.scss';
 
 async function main() {
@@ -17,9 +19,13 @@ async function main() {
   // TODO: Initialize Store
   const store = {};
   ReactDOM.render(
-    <App store={store} />, 
+    <App store={store} />,
     target
   );
 }
 
-main().catch(logger.error);
+export default main;
+
+if (window.self && document) {
+  main().catch(logger.error);
+}
