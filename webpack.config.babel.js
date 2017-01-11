@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         test: /\.(sass|scss|css)$/,
-        loader: appCSS.extract('css?sourceMap!postcss-loader!sass?sourceMap'),
+        loader: appCSS.extract('css-loader?sourceMap!postcss-loader!sass-loader?sourceMap'),
       },
       {
         test: /\.json$/,
