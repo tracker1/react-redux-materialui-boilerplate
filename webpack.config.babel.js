@@ -59,7 +59,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /src\//,
-        loader: 'source-map',
+        loader: 'source-map-loader',
       },
     ],
     loaders: [
