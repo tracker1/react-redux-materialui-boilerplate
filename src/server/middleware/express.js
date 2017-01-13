@@ -5,7 +5,6 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import cfg from '../config';
 
-
 export default async function addExpressMiddleware(app) {
   app.set('views', path.join(__dirname, '../views'));
   app.set('view engine', 'ejs');

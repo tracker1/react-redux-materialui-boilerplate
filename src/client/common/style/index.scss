@@ -1,8 +1,15 @@
 // TODO: RESET
 body {
-  font-family: sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 // TODO: Common Fonts
+h1, h2, h3, h4, h5 {
+  font-family: 'Noto Serif', serif;
+}
+
+pre, code {
+  font-family: 'Inconsolata', monospace;
+}
 
 // TODO: Base Form Controls
