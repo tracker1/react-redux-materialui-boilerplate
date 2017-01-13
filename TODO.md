@@ -37,7 +37,7 @@ for this project.
       * ~~webpack dev server init~~
       * spawn server in dev mode / nodemon
   * api route
-    * error handler
+    * ~~error handler~~
   * page route - react/app render
     * wireup store
     * wireup router
