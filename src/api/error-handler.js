@@ -1,5 +1,5 @@
-import logger from '../logger';
 import clone from 'fclone';
+import logger from './logger';
 
 export default (req, res, next, error) => {
   const code = (error && error.code) || 500;
