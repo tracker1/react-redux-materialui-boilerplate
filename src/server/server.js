@@ -10,6 +10,10 @@ import registerHttps from './register-listener-https';
 export default async function main() {
   try {
     process.on('uncaughtException', handleGlobalException);
+    process.on('SIGINT', () => {
+      console.log('Shutting down.');
+      setTimeout(() => process.exit(), 10);
+    });
 
     // new express app
     const app = express();
