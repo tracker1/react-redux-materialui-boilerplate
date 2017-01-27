@@ -1,5 +1,11 @@
-// If a request was not resolve, raise a 440 error
-export default (req, res, next) => next({
-  message: 'Not Found',
-  code: 404,
-});
+import logger from './logger';
+
+export default (req, res, next) => {
+  res.status(404).json({ 
+    error: {
+      name: 'NotFoundError',
+      status: 404, 
+      message: 'Not Found',
+    },
+  });
+};
